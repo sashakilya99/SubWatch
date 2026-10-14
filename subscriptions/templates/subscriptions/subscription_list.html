@@ -16,6 +16,7 @@
                     Контроль подписок и регулярных платежей
                 </p>
             </div>
+
             <a class="button" href="{% url 'subscription_create' %}">
                 + Добавить подписку
             </a>
@@ -24,20 +25,30 @@
         <section class="stats-grid">
             <div class="stat-card">
                 <p class="stat-label">Расходы в месяц</p>
-                <p class="stat-value">{{ monthly_total|floatformat:2 }}</p>
-                <span class="stat-hint">Средние ежемесячные расходы</span>
+                <p class="stat-value">
+                    {{ monthly_total|floatformat:2 }}
+                </p>
+                <span class="stat-hint">
+                    Средние ежемесячные расходы
+                </span>
             </div>
 
             <div class="stat-card">
                 <p class="stat-label">Расходы в год</p>
-                <p class="stat-value">{{ yearly_total|floatformat:2 }}</p>
-                <span class="stat-hint">Прогноз на 12 месяцев</span>
+                <p class="stat-value">
+                    {{ yearly_total|floatformat:2 }}
+                </p>
+                <span class="stat-hint">
+                    Прогноз на 12 месяцев
+                </span>
             </div>
 
             <div class="stat-card">
                 <p class="stat-label">Активные подписки</p>
                 <p class="stat-value">{{ active_count }}</p>
-                <span class="stat-hint">Регулярные платежи</span>
+                <span class="stat-hint">
+                    Регулярные платежи
+                </span>
             </div>
         </section>
 
@@ -64,7 +75,9 @@
                             <option
                                 value="{{ value }}"
                                 {% if status_filter == value %}selected{% endif %}
-                            >{{ label }}</option>
+                            >
+                                {{ label }}
+                            </option>
                         {% endfor %}
                     </select>
                 </div>
@@ -77,7 +90,9 @@
                             <option
                                 value="{{ category }}"
                                 {% if category_filter == category %}selected{% endif %}
-                            >{{ category }}</option>
+                            >
+                                {{ category }}
+                            </option>
                         {% endfor %}
                     </select>
                 </div>
@@ -104,7 +119,10 @@
                 </div>
 
                 <div class="filter-actions">
-                    <button class="button" type="submit">Применить</button>
+                    <button class="button" type="submit">
+                        Применить
+                    </button>
+
                     <a class="reset-link" href="{% url 'subscription_list' %}">
                         Сбросить
                     </a>
@@ -125,10 +143,13 @@
                                 <th>Действия</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             {% for subscription in subscriptions %}
                                 <tr>
-                                    <td><strong>{{ subscription.name }}</strong></td>
+                                    <td>
+                                        <strong>{{ subscription.name }}</strong>
+                                    </td>
                                     <td>{{ subscription.category }}</td>
                                     <td>
                                         {{ subscription.amount|floatformat:2 }}
@@ -154,12 +175,14 @@
                                     <td class="actions">
                                         <a
                                             class="action-link"
-                                            href="{% url 'subscription_update' subscription.id %}"
-                                        >Изменить</a>
+                                            href="{% url 'subscription_update' subscription.id %}">
+                                            Изменить
+                                        </a>
                                         <a
                                             class="action-link action-delete"
-                                            href="{% url 'subscription_delete' subscription.id %}"
-                                        >Удалить</a>
+                                            href="{% url 'subscription_delete' subscription.id %}">
+                                            Удалить
+                                        </a>
                                     </td>
                                 </tr>
                             {% endfor %}
