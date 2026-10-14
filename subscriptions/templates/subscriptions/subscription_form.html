@@ -1,0 +1,38 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubWatch — Новая подписка</title>
+    <link rel="stylesheet" href="{% static 'subscriptions/css/style.css' %}">
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <div>
+                <h1 class="logo">SubWatch</h1>
+                <p class="subtitle">Новая подписка</p>
+            </div>
+        </header>
+
+        <section class="card form-card">
+            <h2 class="section-title">{{ page_title|default:"Добавить подписку" }}</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button class="button" type="submit">
+                    Сохранить подписку
+                </button>
+            </form>
+
+            <a class="back-link" href="{% url 'subscription_list' %}">
+                ← Вернуться к списку
+            </a>
+        </section>
+    </main>
+</body>
+</html>

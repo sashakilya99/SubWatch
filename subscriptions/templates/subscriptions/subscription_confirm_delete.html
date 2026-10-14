@@ -1,0 +1,39 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubWatch — Удаление подписки</title>
+    <link rel="stylesheet" href="{% static 'subscriptions/css/style.css' %}">
+</head>
+<body>
+    <main class="container">
+        <section class="card form-card">
+            <h1 class="logo">SubWatch</h1>
+            <h2 class="section-title">Удалить подписку?</h2>
+
+            <p>
+                Ты действительно хочешь удалить подписку
+                <strong>{{ subscription.name }}</strong>?
+            </p>
+
+            <p class="subtitle">
+                Это действие нельзя отменить.
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+                <button class="button" type="submit">
+                    Да, удалить
+                </button>
+            </form>
+
+            <a class="back-link" href="{% url 'subscription_list' %}">
+                ← Отмена
+            </a>
+        </section>
+    </main>
+</body>
+</html>
