@@ -1,4 +1,4 @@
-
+from django.contrib.auth.decorators import login_required
 from decimal import Decimal
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SubscriptionForm
 from .models import Subscription
 
-
+@login_required
 def subscription_list(request):
     all_subscriptions = Subscription.objects.all()
     active_subscriptions = all_subscriptions.filter(status="active")
@@ -98,7 +98,7 @@ def subscription_list(request):
         context,
     )
 
-
+@login_required
 def subscription_create(request):
     if request.method == "POST":
         form = SubscriptionForm(request.POST)
@@ -115,7 +115,7 @@ def subscription_create(request):
         {"form": form, "page_title": "Добавить подписку"},
     )
 
-
+@login_required
 def subscription_update(request, subscription_id):
     subscription = get_object_or_404(
         Subscription,
@@ -143,7 +143,7 @@ def subscription_update(request, subscription_id):
         },
     )
 
-
+@login_required
 def subscription_delete(request, subscription_id):
     subscription = get_object_or_404(
         Subscription,
